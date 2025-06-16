@@ -125,7 +125,7 @@ export default function Research() {
         <div className="container mx-auto px-4 max-w-2xl">
           <h2 className="text-3xl font-bold mb-6">Есть предложение для сотрудничества?</h2>
           <p className="mb-8 text-lg">Мы открыты к совместным исследованиям и публикациям.</p>
-          <Link to="/contacts" className="inline-block bg-white text-blue-700 font-semibold py-4 px-10 rounded-full shadow-lg hover:bg-gray-100 transition">Связаться с нами</Link>
+          <Link to="#contacts" className="inline-block bg-white text-blue-700 font-semibold py-4 px-10 rounded-full shadow-lg hover:bg-gray-100 transition">Связаться с нами</Link>
         </div>
       </section>
     </Layout>

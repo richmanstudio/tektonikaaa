@@ -156,7 +156,7 @@ export default function Services() {
             24 часов.
           </p>
           <Link
-            to="/contacts"
+            to="#contacts"
             className="inline-block bg-white text-blue-700 font-semibold py-4 px-10 rounded-full shadow-lg hover:bg-gray-100 transition"
           >
             Связаться с нами

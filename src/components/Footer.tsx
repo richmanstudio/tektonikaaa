@@ -1,5 +1,4 @@
 // src/components/Footer.tsx
-import React from "react";
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail } from "lucide-react";
 
@@ -38,8 +37,8 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/careers" className="hover:underline">
-                Карьера
+              <Link to="/About" className="hover:underline">
+                О нас
               </Link>
             </li>
             <li>

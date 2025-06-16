@@ -1,215 +1,216 @@
 // src/pages/Media.tsx
-import React, { useState } from "react";
-import Layout from "../layouts/MainLayout";
-import { motion, AnimatePresence } from "framer-motion";
-import { Image as ImageIcon, Newspaper, FileText, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import Layout from '../layouts/MainLayout';
+import { Newspaper, Image, FileText } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-/**
- * «Медиа-центр 3.0» — новости, фотогалерея с лайтбоксом и документы.
- * Реализовано на чистом React + Framer Motion (без сторонних lightbox-библиотек).
- */
+interface NewsItem {
+  id: string;
+  title: string;
+  date: string;
+  summary: string;
+  link: string;
+}
 
-// Фэйковые данные — заменить на API / CMS
-const NEWS = Array.from({ length: 5 }).map((_, i) => ({
-  id: i + 1,
-  title: `Заголовок новости №${i + 1}`,
-  date: "12.03.2025",
-  desc: "Краткое описание новости. Оно не слишком длинное, но информативное.",
-  link: "#",
-}));
+interface DocumentItem {
+  id: string;
+  title: string;
+  url: string;
+}
 
-const PHOTOS = Array.from({ length: 12 }).map((_, i) => ({
-  id: i + 1,
-  src: `/src/assets/photos/season-2024/IMG_61${10 + i}.JPG`,
-  alt: `Фотография ${i + 1}`,
-}));
-
-const DOCS = [
-  { name: "Годовой отчёт 2024.pdf", url: "/docs/report-2024.pdf" },
-  { name: "Презентация компании.pptx", url: "/docs/presentation.pptx" },
+const NEWS: NewsItem[] = [
+  {
+    id: 'news-1',
+    title: 'Запуск новой экспедиции',
+    date: '12.06.2025',
+    summary:
+      'Мы отправили геофизическую команду на восточную границу для сбора сейсмических данных.',
+    link: '/media/news/expedition-launch',
+  },
+  {
+    id: 'news-2',
+    title: 'Публикация в «Геофизическом журнале»',
+    date: '28.05.2025',
+    summary:
+      'Результаты наших исследований опубликовали в ведущем отраслевом издании.',
+    link: '/media/news/journal-publication',
+  },
+  {
+    id: 'news-3',
+    title: 'Участие в международной конференции',
+    date: '03.04.2025',
+    summary:
+      'Специалисты «Тектоники» выступили с докладами на конференции по 3D-интерпретации.',
+    link: '/media/news/conference-2025',
+  },
 ];
 
-const TABS = [
-  { key: "news", label: "Новости", icon: <Newspaper size={18} /> },
-  { key: "photo", label: "Фото", icon: <ImageIcon size={18} /> },
-  { key: "docs", label: "Документы", icon: <FileText size={18} /> },
-] as const;
+const DOCUMENTS: DocumentItem[] = [
+  {
+    id: 'doc-1',
+    title: 'Методические рекомендации по полевым работам',
+    url: '/assets/docs/field-methods.pdf',
+  },
+  {
+    id: 'doc-2',
+    title: 'Отчёт о результатах интерпретации данных',
+    url: '/assets/docs/interpretation-report.pdf',
+  },
+  {
+    id: 'doc-3',
+    title: 'Технический регламент по обработке сейсмики',
+    url: '/assets/docs/seismic-guide.pdf',
+  },
+];
 
-type TabKey = (typeof TABS)[number]["key"];
+// Vite import.meta.glob with proper generic typing:
+const photoModules = import.meta.glob<{ default: string }>(
+  '../assets/photos/season-2024/*.{jpg,JPG,png,PNG}',
+  { eager: true }
+);
 
-type Photo = (typeof PHOTOS)[number];
+const PHOTOS: string[] = Object.values(photoModules).map((m) => m.default);
 
 export default function Media() {
-  const [active, setActive] = useState<TabKey>("news");
-  const [lightbox, setLightbox] = useState<Photo | null>(null);
+  const [activeTab, setActiveTab] = useState<'news' | 'photos' | 'docs'>(
+    'photos'
+  );
 
   return (
     <Layout>
-      {/* HERO */}
-      <section className="relative py-24 text-center bg-gradient-to-br from-blue-900 to-blue-600 text-white overflow-hidden">
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl font-extrabold mb-4"
-        >
-          Медиа-центр
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-lg md:text-2xl max-w-xl mx-auto"
-        >
-          Новости, галерея и полезные материалы о работе «Тектоники»
-        </motion.p>
-        {/* декор */}
-        <div className="absolute -top-20 -left-24 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-16 -right-32 w-80 h-80 bg-white/10 rounded-full blur-2xl" />
-      </section>
-
-      {/* TABS */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {TABS.map(t => (
-              <button
-                key={t.key}
-                onClick={() => setActive(t.key)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition ${
-                  active === t.key
-                    ? "bg-blue-700 text-white shadow-lg"
-                    : "bg-white text-blue-700 shadow hover:bg-white/90"
-                }`}
-              >
-                {t.icon}
-                {t.label}
-              </button>
-            ))}
-          </div>
-
-          <AnimatePresence mode="wait" initial={false}>
-            {active === "news" && (
-              <motion.div
-                key="news"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-              >
-                {NEWS.map(n => (
-                  <article
-                    key={n.id}
-                    className="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition flex flex-col"
-                  >
-                    <h3 className="text-xl font-semibold mb-2 text-blue-700">
-                      {n.title}
-                    </h3>
-                    <p className="text-sm text-gray-500 mb-4">{n.date}</p>
-                    <p className="text-gray-700 flex-grow">{n.desc}</p>
-                    <Link
-                      to={n.link}
-                      className="mt-4 text-blue-700 font-semibold hover:underline"
-                    >
-                      Читать далее →
-                    </Link>
-                  </article>
-                ))}
-              </motion.div>
-            )}
-
-            {active === "photo" && (
-              <motion.div
-                key="photo"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-              >
-                {PHOTOS.map(ph => (
-                  <motion.img
-                    key={ph.id}
-                    src={ph.src}
-                    alt={ph.alt}
-                    className="w-full h-48 object-cover rounded-xl cursor-pointer hover:scale-105 transition"
-                    onClick={() => setLightbox(ph)}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                  />
-                ))}
-              </motion.div>
-            )}
-
-            {active === "docs" && (
-              <motion.div
-                key="docs"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-2xl mx-auto"
-              >
-                <ul className="space-y-4">
-                  {DOCS.map(d => (
-                    <li
-                      key={d.url}
-                      className="bg-white shadow rounded-xl p-4 flex items-center justify-between"
-                    >
-                      <span className="text-gray-800">{d.name}</span>
-                      <a
-                        href={d.url}
-                        className="text-blue-700 font-semibold hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Скачать
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            )}
-          </AnimatePresence>
+      {/* Hero */}
+      <section className="bg-gradient-to-r from-blue-700 to-purple-600 py-24">
+        <div className="container mx-auto px-4 text-center text-white">
+          <h1 className="text-4xl font-bold mb-2">Медиа-центр</h1>
+          <p className="text-lg">
+            Все новости, фото и документы о работе «Тектоники» в одном месте
+          </p>
         </div>
       </section>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightbox && (
-          <motion.div
-            className="fixed inset-0 bg-black/80 backdrop-blur z-50 flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setLightbox(null)}
+      {/* Tabs */}
+      <section className="container mx-auto px-4 py-8 text-center">
+        <nav className="inline-flex rounded-full bg-white shadow">
+          <button
+            onClick={() => setActiveTab('news')}
+            className={`px-6 py-2 rounded-full font-semibold transition ${
+              activeTab === 'news'
+                ? 'bg-blue-700 text-white'
+                : 'text-gray-700 hover:bg-gray-100'
+            }`}
           >
+            <Newspaper className="inline-block w-5 h-5 mr-2 align-middle" />
+            Новости
+          </button>
+          <button
+            onClick={() => setActiveTab('photos')}
+            className={`px-6 py-2 rounded-full font-semibold transition ${
+              activeTab === 'photos'
+                ? 'bg-blue-700 text-white'
+                : 'text-gray-700 hover:bg-gray-100'
+            }`}
+          >
+            <Image className="inline-block w-5 h-5 mr-2 align-middle" />
+            Фото
+          </button>
+          <button
+            onClick={() => setActiveTab('docs')}
+            className={`px-6 py-2 rounded-full font-semibold transition ${
+              activeTab === 'docs'
+                ? 'bg-blue-700 text-white'
+                : 'text-gray-700 hover:bg-gray-100'
+            }`}
+          >
+            <FileText className="inline-block w-5 h-5 mr-2 align-middle" />
+            Документы
+          </button>
+        </nav>
+      </section>
+
+      {/* Content */}
+      <section className="container mx-auto px-4 pb-12">
+        <AnimatePresence mode="wait">
+          {activeTab === 'news' && (
             <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              className="relative"
-              onClick={e => e.stopPropagation()}
+              key="news"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
             >
-              <button
-                onClick={() => setLightbox(null)}
-                className="absolute -top-4 -right-4 bg-white rounded-full p-2 shadow hover:bg-gray-100"
-              >
-                <X />
-              </button>
-              <img
-                src={lightbox.src}
-                alt={lightbox.alt}
-                className="max-h-[80vh] rounded-xl shadow-lg"
-              />
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {NEWS.map((item) => (
+                  <article
+                    key={item.id}
+                    className="bg-white rounded-xl shadow p-6"
+                  >
+                    <h3 className="text-xl font-semibold text-blue-700 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm mb-4">{item.date}</p>
+                    <p className="text-gray-700 mb-4">{item.summary}</p>
+                    <a
+                      href={item.link}
+                      className="text-blue-700 font-medium hover:underline"
+                    >
+                      Читать далее →
+                    </a>
+                  </article>
+                ))}
+              </div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+
+          {activeTab === 'photos' && (
+            <motion.div
+              key="photos"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+                {PHOTOS.map((src, idx) => (
+                  <div key={idx} className="overflow-hidden rounded-lg shadow">
+                    <img
+                      src={src}
+                      alt={`Фотография ${idx + 1}`}
+                      className="object-cover w-full h-48"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {activeTab === 'docs' && (
+            <motion.div
+              key="docs"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ul className="space-y-4">
+                {DOCUMENTS.map((doc) => (
+                  <li key={doc.id}>
+                    <a
+                      href={doc.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-blue-700 font-medium hover:underline"
+                    >
+                      <FileText className="mr-2 w-5 h-5" />
+                      {doc.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </section>
     </Layout>
   );
 }
