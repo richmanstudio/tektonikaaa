@@ -49,7 +49,8 @@ export default function Home() {
             Открываем недра <span className="text-yellow-300">цифровыми</span> методами
           </h1>
           <p className="text-lg md:text-2xl max-w-3xl mb-10 font-light drop-shadow">
-            От первого измерения на площадке до зрелищной 3-D модели в браузере — полный цикл геофизики
+            От первого измерения на площадке до зрелищной 3-D модели в браузере — полный цикл геофизики.
+            <p>Под эгидой "Института тектоники и геофизики имени Ю. А. Косыгина ДВО РАН"</p>
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

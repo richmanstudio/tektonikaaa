@@ -147,7 +147,7 @@ export default function Careers() {
       ...formData
     };
     emailjs
-      .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params, "YOUR_PUBLIC_KEY")
+      .send("service_labg6pe", "template_tusbpp5", params, "m4DT1MN15nyCSdWzE")
       .then(() => setSubmitted(true))
       .catch(err => console.error("EmailJS Error:", err));
   };
