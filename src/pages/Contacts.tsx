@@ -121,8 +121,8 @@ export default function Contacts() {
           <Mail className="w-6 h-6 text-blue-700 mt-1" />
           <div>
             <h3 className="font-semibold text-lg mb-1">E-mail</h3>
-            <a href="mailto:info@tektonika.ru" className="hover:underline">
-              info@tektonika.ru
+            <a href="mailto:tektonikayur16@gmail.com" className="hover:underline">
+              tektonikayur16@gmail.com
             </a>
           </div>
         </div>

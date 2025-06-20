@@ -89,10 +89,10 @@ export default function Footer() {
               <li className="flex items-center">
                 <Mail className="w-5 h-5 text-blue-600" />
                 <a
-                  href="mailto:info@tektonika.ru"
+                  href="mailto:tektonikayur16@gmail.com"
                   className="ml-3 hover:text-blue-600 transition-colors"
                 >
-                  info@tektonika.ru
+                  tektonikayur16@gmail.com
                 </a>
               </li>
             </ul>
@@ -101,6 +101,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-300 mt-8 pt-6 text-center text-xs text-gray-500">
           © {new Date().getFullYear()} ООО «Тектоника». Все права защищены.
+          | Design & Develop by Richman Studio
         </div>
       </div>
     </footer>

@@ -22,7 +22,7 @@ const SERVICES = [
 const STATS = [
   { label: "проектов", value: 220 },
   { label: "клиентов", value: 130 },
-  { label: "лет опыта", value: 3 },
+  { label: "лет опыта", value: 10 },
 ];
 
 export default function Home() {

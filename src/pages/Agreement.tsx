@@ -66,7 +66,7 @@ export default function Agreement() {
           <p>
             По вопросам данного Соглашения обращайтесь:<br />
             ООО «Тектоника», г. Хабаровск, ул. Ким Ю Чена, 65, офис 326;<br />
-            Email: <a href="mailto:info@tektonika.ru">info@tektonika.ru</a>;<br />
+            Email: <a href="mailto:info@tektonika.ru">tektonikayur16@gmail.com</a>;<br />
             Телефон: <a href="tel:+79842626115">+7 (984) 262-61-15</a>.
           </p>
         </div>

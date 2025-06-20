@@ -21,45 +21,19 @@ interface DocumentItem {
 const NEWS: NewsItem[] = [
   {
     id: 'news-1',
-    title: 'Запуск новой экспедиции',
-    date: '12.06.2025',
+    title: 'Открытие нашего портала!',
+    date: '01.07.2025',
     summary:
-      'Мы отправили геофизическую команду на восточную границу для сбора сейсмических данных.',
+      'Мы разработали качественный детализированный веб-сайт для ваших удобств.',
     link: '/media/news/expedition-launch',
-  },
-  {
-    id: 'news-2',
-    title: 'Публикация в «Геофизическом журнале»',
-    date: '28.05.2025',
-    summary:
-      'Результаты наших исследований опубликовали в ведущем отраслевом издании.',
-    link: '/media/news/journal-publication',
-  },
-  {
-    id: 'news-3',
-    title: 'Участие в международной конференции',
-    date: '03.04.2025',
-    summary:
-      'Специалисты «Тектоники» выступили с докладами на конференции по 3D-интерпретации.',
-    link: '/media/news/conference-2025',
   },
 ];
 
 const DOCUMENTS: DocumentItem[] = [
   {
     id: 'doc-1',
-    title: 'Методические рекомендации по полевым работам',
+    title: 'Здесь будет документ',
     url: '/assets/docs/field-methods.pdf',
-  },
-  {
-    id: 'doc-2',
-    title: 'Отчёт о результатах интерпретации данных',
-    url: '/assets/docs/interpretation-report.pdf',
-  },
-  {
-    id: 'doc-3',
-    title: 'Технический регламент по обработке сейсмики',
-    url: '/assets/docs/seismic-guide.pdf',
   },
 ];
 

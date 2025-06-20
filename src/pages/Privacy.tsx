@@ -71,7 +71,7 @@ export default function Privacy() {
           <h2>9. Контакты</h2>
           <p>
             По вопросам конфиденциальности обращайтесь:<br />
-            ООО «Тектоника», Email: <a href="mailto:privacy@tektonika.ru">privacy@tektonika.ru</a>;<br />
+            ООО «Тектоника», Email: <a href="mailto:privacy@tektonika.ru">tektonikayur16@gmail.com</a>;<br />
             Телефон: <a href="tel:+79842626115">+7 (984) 262-61-15</a>.
           </p>
         </div>
