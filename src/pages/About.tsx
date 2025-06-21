@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import Layout from "../layouts/MainLayout";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import heroImg from "../assets/abouthero-bg.jpg";
 import logo from "../assets/logo.png";
 import { GraduationCap, MapPin, Phone, Clock, Heart, BookOpen, Gift } from "lucide-react";
@@ -32,7 +33,11 @@ export default function About() {
       {/* Breadcrumbs */}
       <nav className="bg-gray-50 px-6 py-3 rounded-md text-sm mb-8">
         <ol className="list-reset flex text-gray-600">
-          <li><a href="/" className="hover:text-blue-600">Главная</a></li>
+          <li>
+            <Link to="/" className="hover:text-blue-600">
+              Главная
+            </Link>
+          </li>
           <li><span className="mx-2">/</span></li>
           <li className="text-gray-800 font-semibold">О нас</li>
         </ol>
