@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Layout from '../layouts/MainLayout';
 import { Newspaper, Image, FileText } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 interface NewsItem {
   id: string;
@@ -123,12 +124,12 @@ export default function Media() {
                     </h3>
                     <p className="text-gray-500 text-sm mb-4">{item.date}</p>
                     <p className="text-gray-700 mb-4">{item.summary}</p>
-                    <a
-                      href={item.link}
+                    <Link
+                      to={item.link}
                       className="text-blue-700 font-medium hover:underline"
                     >
                       Читать далее →
-                    </a>
+                    </Link>
                   </article>
                 ))}
               </div>

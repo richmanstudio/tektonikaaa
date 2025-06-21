@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://richmanstudio.github.io/tektonikaaa#",
+  "homepage": "https://richmanstudio.github.io/tektonikaaa",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
