@@ -16,6 +16,9 @@ const Media = React.lazy(() => import("../pages/Media"));
 const Careers = React.lazy(() => import("../pages/Careers"));
 const Agreement = React.lazy(() => import("../pages/Agreement"));
 const Privacy = React.lazy(() => import("../pages/Privacy"));
+const NewsExpeditionLaunch = React.lazy(
+  () => import("../pages/news/ExpeditionLaunch")
+);
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -170,6 +173,22 @@ export default function AppRoutes() {
                 transition={pageTransition}
               >
                 <Privacy />
+              </motion.div>
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/media/news/expedition-launch"
+          element={
+            <React.Suspense fallback={<Spinner />}>
+              <motion.div
+                initial="initial"
+                animate="in"
+                exit="out"
+                variants={pageVariants}
+                transition={pageTransition}
+              >
+                <NewsExpeditionLaunch />
               </motion.div>
             </React.Suspense>
           }
