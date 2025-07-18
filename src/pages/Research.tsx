@@ -12,16 +12,16 @@ import { Link } from "react-router-dom";
 const PATENTS = [
   {
     id: "pat-1",
-    title: "Патент №1234567: способ высокоточного картирования",
+    title: "Скоро будет доступно",
     date: "15.10.2024",
-    desc: "Методика комплексной обработки данных сейсмо‑ и электроразведки.",
+    desc: "Скоро будет доступно",
     file: "/docs/patent-1.pdf",
   },
   {
     id: "pat-2",
-    title: "Патент №7654321: система IP‑томографии",
+    title: "Скоро будет доступно",
     date: "07.01.2025",
-    desc: "Инверсия с обратной связью по блок‑модели.",
+    desc: "Скоро будет доступно",
     file: "/docs/patent-2.pdf",
   },
 ];
@@ -29,16 +29,16 @@ const PATENTS = [
 const ARTICLES = [
   {
     id: "art-1",
-    title: "Новые подходы к IP‑томографии",
+    title: "Скоро будет доступно",
     date: "20.08.2024",
-    journal: "Geophysics Today",
+    journal: "soon",
     file: "/docs/article-ip.pdf",
   },
   {
     id: "art-2",
-    title: "3‑D моделирование коренных руд",
+    title: "Скоро будет доступно",
     date: "11.11.2024",
-    journal: "Mining Magazine",
+    journal: "soon",
     file: "/docs/article-rud.pdf",
   },
 ];
@@ -46,16 +46,16 @@ const ARTICLES = [
 const REPORTS = [
   {
     id: "rep-1",
-    title: "Отчёт по сейсморазведке 2023",
+    title: "Скоро будет доступно",
     date: "30.06.2023",
-    desc: "Комплексный отчёт по полевым работам в Хабаровском крае.",
+    desc: "Скоро будет доступно",
     file: "/docs/report-seis.pdf",
   },
   {
     id: "rep-2",
-    title: "Отчёт по гравиметрическим исследованиям",
+    title: "Скоро будет доступно",
     date: "15.12.2023",
-    desc: "Результаты мониторинга гравполя.",
+    desc: "Скоро будет доступно",
     file: "/docs/report-grav.pdf",
   },
 ];

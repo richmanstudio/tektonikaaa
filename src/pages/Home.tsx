@@ -50,7 +50,6 @@ export default function Home() {
           </h1>
           <p className="text-lg md:text-2xl max-w-3xl mb-10 font-light drop-shadow">
             От первого измерения на площадке до зрелищной 3-D модели в браузере — полный цикл геофизики.
-            <p>Под эгидой "Института тектоники и геофизики имени Ю. А. Косыгина ДВО РАН"</p>
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
@@ -120,7 +119,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
+    {/*}
       <section className="py-24 bg-gradient-to-br from-blue-700 to-blue-800 text-white text-center">
         <div className="container mx-auto px-4 max-w-3xl">
           <motion.blockquote
@@ -136,6 +135,8 @@ export default function Home() {
           </motion.blockquote>
         </div>
       </section>
+
+      */}
 
       {/* CONTACTS */}
       <section className="py-24 bg-gray-50">
